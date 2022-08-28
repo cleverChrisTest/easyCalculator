@@ -1,10 +1,12 @@
-
-
 /*
- * List of parameters:
+ * List of variables:
  *  - number: string. Stores a string with the buttons pressed.
- *  - calculator: string. A html calculator.
+ *  - calculator: string. A html calculator it will appear inside an html element with the id 'js'.
  * List of functions: 
+ *  - print: prints the content anywhere in your html page.
+ *  - getClick(): gets the local variable 'value' which has the value of the pressed button and process it.
+ *  - operate(value): checks the input and decide between keep adding numbers and symbols, evaluate the string or clear the screen.
+ *  - eval(string): obtains the result of all operations inside the string.
  */
 
 let number = "";
