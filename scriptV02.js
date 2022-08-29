@@ -1,5 +1,3 @@
-let number = "";
-
 let calculator = `<div class="container"><h1>CALCULATOR</h1>
 <div class="calculator"><input type="text" name="screen" id="answer" readonly>
 <table>
@@ -37,43 +35,37 @@ let calculator = `<div class="container"><h1>CALCULATOR</h1>
 </div>
 </div>`;
 
-class calculator {
-  constructor(){}
-  
- /**
-  * Gets the value of the clicked button to process it inside the operate(function)
-  * @returns {undefined}
-  */
-  function getClick(){
-      for (let item of buttons) {
-          item.addEventListener("click", n => {
-              let value = n.target.innerHTML;
-              operate(value);
-          });
-      }
-  }
-  
-  function operate(value) {
-      if(value === "="){
-          console.log(eval(number));
-          number = eval(number);
-          document.getElementById("answer").innerHTML = number;
-      } else if(value === "C"){
-          number = "";
-          document.getElementById("answer").innerHTML = number;
-      }
-      else {
-          number += value;
-          console.log(number);
-          document.getElementById("answer").innerHTML = number;
-      }
-  }
-  
-  
+class Calculator {
+    constructor(){
+        this.number = "";
+        this.buttons = document.querySelectorAll("button");
+        this.getClick = function () {
+            for (let item of this.buttons) {
+                item.addEventListener("click", n => {
+                    let value = n.target.innerHTML;
+                    this.operate(value);
+                });
+            }
+        };
+        
+        this.operate = function (value) {
+            if (value === "=") {
+                console.log(eval(this.number));
+                this.number = eval(this.number);
+                document.getElementById("answer").innerHTML = this.number;
+            } else if (value === "C") {
+                this.number = "";
+                document.getElementById("answer").innerHTML = this.number;
+            } else {
+                this.number += value;
+                console.log(this.number);
+                document.getElementById("answer").innerHTML = this.number;
+            }
+        };
+    };
 }
 
+document.getElementById("js").innerHTML = calculator;
 
-print(calculator, "js");
-buttons = document.querySelectorAll("button");
-
-getClick();
+let calc = new Calculator();
+calc.getClick();
