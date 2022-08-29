@@ -39,30 +39,31 @@ class Calculator {
     constructor(){
         this.number = "";
         this.buttons = document.querySelectorAll("button");
-        this.getClick = function () {
-            for (let item of this.buttons) {
-                item.addEventListener("click", n => {
-                    let value = n.target.innerHTML;
-                    this.operate(value);
-                });
-            }
-        };
-        
-        this.operate = function (value) {
-            if (value === "=") {
-                console.log(eval(this.number));
-                this.number = eval(this.number);
-                document.getElementById("answer").innerHTML = this.number;
-            } else if (value === "C") {
-                this.number = "";
-                document.getElementById("answer").innerHTML = this.number;
-            } else {
-                this.number += value;
-                console.log(this.number);
-                document.getElementById("answer").innerHTML = this.number;
-            }
-        };
-    };
+    }
+    
+    getClick() {
+        for (let item of this.buttons) {
+            item.addEventListener("click", n => {
+                let value = n.target.innerHTML;
+                this.operate(value);
+            });
+        }
+    }
+    
+    operate(value) {
+        if (value === "=") {
+            console.log(eval(this.number));
+            this.number = eval(this.number);
+            document.getElementById("answer").innerHTML = this.number;
+        } else if (value === "C") {
+            this.number = "";
+            document.getElementById("answer").innerHTML = this.number;
+        } else {
+            this.number += value;
+            console.log(this.number);
+            document.getElementById("answer").innerHTML = this.number;
+        }
+    }
 }
 
 document.getElementById("js").innerHTML = calculator;
