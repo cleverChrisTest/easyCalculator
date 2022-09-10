@@ -1,39 +1,34 @@
-let calculator = `<div class="container"><h1>CALCULATOR</h1>
-<div class="calculator"><input type="text" name="screen" id="answer" readonly>
-<table>
-<tr>
-<td><button>(</button></td>
-<td><button>)</button></td>
-<td><button>C</button></td>
-<td><button>/</button></td>
-</tr>
-<tr>
-<td><button>7</button></td>
-<td><button>8</button></td>
-<td><button>9</button></td>
-<td><button>*</button></td>
-</tr>
-<tr>
-<td><button>4</button></td>
-<td><button>5</button></td>
-<td><button>6</button></td>
-<td><button>-</button></td>
-</tr>
-<tr>
-<td><button>1</button></td>
-<td><button>2</button></td>
-<td><button>3</button></td>
-<td><button>+</button></td>
-</tr>
-<tr>
-<td><button>0</button></td>
-<td><button style="font-weight: bold;">.</button></td>
-<td><button>/</button></td>
-<td><button>=</button></td>
-</tr>
-</table>
-</div>
-</div>`;
+function createCustomHTML(elementId) {
+    document.getElementById(elementId).appendChild(document.createElement("div"));
+    document.querySelectorAll("div")[1].
+            appendChild(this.createInput("type", "answer", "screen"));
+    document.querySelectorAll("div")[1].appendChild(
+            document.createElement("br"));
+    let buttons = ["(", ")", "C", "/", 7, 8, 9, "*", 4, 5, 6, "-",
+        1, 2, 3, "+", 0, ".", "="];
+    let index = 0;
+    buttons.forEach(n => {
+        index++;
+        let button = document.createElement("button");
+        button.innerHTML = n;
+        document.querySelectorAll("div")[1].appendChild(button);
+        if (index % 4 === 0) {
+            document.querySelectorAll("div")[1].appendChild(
+                    document.createElement("br"));
+        }
+    });
+}
+
+function createInput(type, id, name, value) {
+    let input = document.createElement("input");
+    input.setAttribute("type", type);
+    input.setAttribute("id", id);
+    input.setAttribute("name", name);
+    if (value !== undefined) {
+        input.setAttribute("value", value);
+    }
+    return input;
+}
 
 class Calculator {
     constructor(){
@@ -66,7 +61,6 @@ class Calculator {
     }
 }
 
-document.getElementById("js").innerHTML = calculator;
-
+createCustomHTML("js");
 let calc = new Calculator();
 calc.getClick();
