@@ -1,33 +1,25 @@
 function createCustomHTML(elementId) {
-    document.getElementById(elementId).appendChild(document.createElement("div"));
-    document.querySelectorAll("div")[1].
-            appendChild(this.createInput("type", "answer", "screen"));
-    document.querySelectorAll("div")[1].appendChild(
-            document.createElement("br"));
+    let div;
     let buttons = ["(", ")", "C", "/", 7, 8, 9, "*", 4, 5, 6, "-",
         1, 2, 3, "+", 0, ".", "="];
     let index = 0;
+    let p = document.createElement("p");
+    p.setAttribute("id", "answer");
+    
+    document.getElementById(elementId).appendChild(document.createElement("div"));
+    div = document.querySelectorAll("div")[1];
+    div.appendChild(p);
+    div.appendChild(document.createElement("br"));
+    
     buttons.forEach(n => {
         index++;
         let button = document.createElement("button");
         button.innerHTML = n;
-        document.querySelectorAll("div")[1].appendChild(button);
+        div.appendChild(button);
         if (index % 4 === 0) {
-            document.querySelectorAll("div")[1].appendChild(
-                    document.createElement("br"));
+            div.appendChild(document.createElement("br"));
         }
     });
-}
-
-function createInput(type, id, name, value) {
-    let input = document.createElement("input");
-    input.setAttribute("type", type);
-    input.setAttribute("id", id);
-    input.setAttribute("name", name);
-    if (value !== undefined) {
-        input.setAttribute("value", value);
-    }
-    return input;
 }
 
 class Calculator {
